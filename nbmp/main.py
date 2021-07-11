@@ -2,6 +2,7 @@
 # This file is licensed under the GPLv2 license.
 
 from nbmp.nbs import nbs
+from nbmp.play_command import play_command
 from podrum.protocol.mcbe.packet.level_sound_event_packet import level_sound_event_packet
 import time
 
@@ -28,6 +29,7 @@ instruments: dict = {
 class main:
     def on_load(self) -> None:
         self.server.logger.info("Loaded NBMP :)")
+        self.server.managers.command_manager.register(play_command(self))
         
     def play_file(path: str, player: object) -> None:
         song: object = nbs(path)
