@@ -3,6 +3,19 @@
 
 from binary_utils.binary_stream import binary_stream
 
+instruments: dict = {
+    0: "note.harp",
+    1: "note.bass",
+    2: "note.bd",
+    3: "note.snare",
+    4: "note.hat",
+    5: "note.guitar",
+    6: "note.flute",
+    7: "note.bell",
+    8: "note.chime",
+    9: "note.xylophone"
+}
+
 class nbs:
     def __init__(self, path: str) -> None:
         with open(path, "rb") as file:
