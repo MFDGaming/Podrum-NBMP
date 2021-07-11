@@ -1,0 +1,8 @@
+{
+    "name": "NBMP",
+    "api_version": "0.0.1",
+    "main": "nbmp.main.main",
+    "version": "0.0.1",
+    "description": "A noteblock music player",
+    "author": "MFDGaming"
+}
