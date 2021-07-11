@@ -21,6 +21,7 @@ class nbs:
         with open(path, "rb") as file:
             self.stream: object = binary_stream(file.read())
         self.load_header()
+        self.load_noteblocks()
               
     def load_header(self) -> None:
         self.song_length: int = self.stream.read_short_le()
@@ -39,3 +40,25 @@ class nbs:
         self.blocks_added: int = self.stream.read_int_le()
         self.blocks_removed: int = self.stream.read_int_le()
         self.midi_or_schematic_file_name: str = self.stream.read(self.stream.read_int_le()).decode()
+            
+    def load_noteblocks(self) -> None:
+        self.noteblocks: dict = {}
+        tick: int = -1
+        jumps: int = 0
+        while True:
+            jumps: int = self.stream.read_short_le()
+            if jumps == 0:
+                break;
+            tick += jumps
+            layer: int = -1
+            while True:
+                jumps: int = self.stream.read_short_le()
+                if jumps == 0:
+                    break;
+                layer += jumps
+                instrument: int = self.stream.read_byte()
+                pitch: int = self.stream.read_byte()
+                if tick not in self.noteblocks:
+                    self.noteblocks[tick] = {layer: (instrument, pitch)}
+                else:
+                    self.noteblocks[tick][layer] = (instrument, pitch)
