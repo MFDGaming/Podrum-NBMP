@@ -56,7 +56,7 @@ class nbs:
                 if jumps == 0:
                     break;
                 layer += jumps
-                instrument: int = self.stream.read_byte()
+                instrument: str = instruments[self.stream.read_byte()]
                 pitch: int = self.stream.read_byte()
                 if tick not in self.noteblocks:
                     self.noteblocks[tick] = {layer: (instrument, pitch)}
