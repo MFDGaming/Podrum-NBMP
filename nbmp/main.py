@@ -31,8 +31,16 @@ class main:
         
     def play_file(path: str, player: object) -> None:
         song: object = nbs(path)
-        for i in range(0, song.song_length):
-            if i in song.noteblocks:
-                packet: object = level_sound_event_packet()
-                packet.sound_id
+        for tick in range(0, song.song_length):
+            if tick in song.noteblocks:
+                for i, layer in song.noteblocks[tick].items():
+                    packet: object = level_sound_event_packet()
+                    packet.sound_id = 81
+                    packet.position = player.position
+                    packet.extra_data = instruments[layer[0]] << 8 | layer[1]
+                    packet.entity_type = "minecraft:noteblock"
+                    packet.is_baby_mob = False
+                    packet.is_global = True
+                    packet.encode()
+                    player.send_packet(packet.data)
             sleep(1 / (0.05 * song.tempo * 100))
