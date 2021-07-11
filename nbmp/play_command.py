@@ -25,6 +25,6 @@ class play_command:
         if sender != self.plugin.server:
             if len(args) >= 1:
                 sender.send_message(f"Playing file")
-                immediate_task(self.plugin.play, [args[0]]).start()
+                immediate_task(self.plugin.play_file, [args[0], sender]).start()
             else:
                 sender.send_message("/play {file}")
