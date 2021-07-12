@@ -31,7 +31,7 @@ class main:
         self.server.logger.info("Loaded NBMP :)")
         self.server.managers.command_manager.register(play_command(self))
         
-    def play_file(path: str, player: object) -> None:
+    def play_file(self, path: str, player: object) -> None:
         song: object = nbs(path)
         for tick in range(0, song.song_length):
             if tick in song.noteblocks:
