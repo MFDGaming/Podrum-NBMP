@@ -45,4 +45,4 @@ class main:
                     packet.is_global = True
                     packet.encode()
                     player.send_packet(packet.data)
-            sleep(1) # / (0.05 * song.tempo))
+            sleep((1 / (song.tempo * 0.5)) + 0.1)
