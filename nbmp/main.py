@@ -4,7 +4,7 @@
 from nbmp.nbs import nbs
 from nbmp.play_command import play_command
 from podrum.protocol.mcbe.packet.level_sound_event_packet import level_sound_event_packet
-import time
+from time import sleep
 
 instruments: dict = {
     "note.harp": 0,
