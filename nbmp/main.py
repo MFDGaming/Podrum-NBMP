@@ -28,7 +28,7 @@ instruments: dict = {
 
 class main:
     def on_load(self) -> None:
-        self.server.logger.info("Loaded NBMP :)")
+        self.server.logger.info("[NBMP] > Thanks for using NBMP :)")
         self.server.managers.command_manager.register(play_command(self))
         
     def play_file(self, path: str, player: object) -> None:
